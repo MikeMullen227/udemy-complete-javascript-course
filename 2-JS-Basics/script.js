@@ -254,14 +254,18 @@ if(john.indexOf('teacher') === -1){
 
 /////////////////////////////////////
 // Lecture: Objects
-
+/*
 var john = {
 	name: 'John',
 	lastName: 'Smith',
 	yearOfBirth: 1990,
 	job: 'teacher',
 	isMarried: false
-}
+	family: ['Jane', 'Mark', 'Bob'],
+	calculateAge: function(yearOfBirth) {
+		return 2016 - yearOfBirth;
+	}
+};
 
 console.log(john['lastName']);
 
@@ -272,4 +276,155 @@ john.lastName = 'Miller';
 john['job'] = 'programmer';
 
 console.log(john);
+
+var jane = new Object();
+jane.name = 'jane';
+jane.lastName = 'Smith';
+jane['yearofBirth'] = 1969;
+jane['job'] = 'retired'
+jane['isMarried'] = true;
+
+console.log(jane);
+*/
+
+
+///////////////////////////////////////
+// Lecture: Objects and Methods
+
+
+// v1.0
+/*
+var john = {
+	name: 'John',
+	lastName: 'Smith',
+	yearOfBirth: 1990,
+	job: 'teacher',
+	isMarried: false,
+	family: ['Jane', 'Mark', 'Bob'],
+	calculateAge: function() {
+		return 2016 - this.yearOfBirth;
+	}
+};
+
+//console.log(john.calculateAge(1970));
+console.log(john.calculateAge());
+
+var age = john.calculateAge();
+john.age = age;
+
+console.log(john);
+
+
+
+// v2.0
+
+var john = {
+	name: 'John',
+	lastName: 'Smith',
+	yearOfBirth: 1990,
+	job: 'teacher',
+	isMarried: false,
+	family: ['Jane', 'Mark', 'Bob'],
+	calculateAge: function() {
+		this.age = 2016 - this.yearOfBirth;
+	}
+};
+
+john.calculateAge();
+console.log(john);
+*/
+
+
+//////////////////////////////////////
+// Lecture: Loops
+
+
+//var names = ['John', 'Jane', 'Mary', 'Mark', 'Bob'];
+
+/*
+// for loops
+for (var i = 0; i < names.length; i++) {
+	console.log(names[i]);
+}
+
+for (var i = names.length - 1; i >=  0 ; i--) {
+	console.log(names[i])
+}
+*/
+
+/*
+//while loops
+var i = 0;
+while(i < names.length) {
+	console.log(names[i]);
+	i++;
+}
+
+
+for (var i = 1; i <= 5; i++) {
+	console.log(i)
+
+	if (i === 3) {
+		break;
+	}
+}
+
+
+for (var i = 1; i <= 5; i++) {
+	if (i === 3) {
+		continue;
+	}
+	console.log(i);
+}
+*/
+
+
+////////////////////////////////////////
+// Coding Challenge 2
+
+var years = [1980, 2002, 1956, 1973, 2012];
+
+var ages = [];
+
+function calcAge(years){
+for(var i = 0; i < years.length; i++){
+	ages.push(2016 - years[i]);
+}
+console.log(ages);
+}
+
+calcAge(years);
+
+var ageCheck = [];
+
+function overEighteen(years){
+for(var i = 0; i < years.length; i++){
+	ageCheck.push(2016 - years[i]);
+	if(ageCheck[i] >= 18){
+		ageCheck.push(true);
+	} else{
+		ageCheck.push(false);
+	}
+}
+console.log(ageCheck);
+}
+
+overEighteen(years);
+
+
+function printFullAge(years){
+	ageCheck = [];
+	trueFalse = [];
+for(var i = 0; i < years.length; i++){
+	ageCheck.push(2016 - years[i]);
+	if(ageCheck[i] >= 18){
+		trueFalse.push(true);
+	} else{
+		trueFalse.push(false);
+}
+}
+console.log(trueFalse);
+}
+
+printFullAge(years);
 
