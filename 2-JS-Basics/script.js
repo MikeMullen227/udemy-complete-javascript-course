@@ -382,6 +382,7 @@ for (var i = 1; i <= 5; i++) {
 ////////////////////////////////////////
 // Coding Challenge 2
 
+/*
 var years = [1980, 2002, 1956, 1973, 2012];
 
 var ages = [];
@@ -427,4 +428,6 @@ console.log(trueFalse);
 }
 
 printFullAge(years);
+*/
+
 
