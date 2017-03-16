@@ -71,6 +71,7 @@ var jane = Object.create(personProto,
 
 
 // Primitives
+/*
 var a = 23;
 var b = a;
 a = 46;
@@ -142,3 +143,66 @@ var rates = arrayCalc(ages, maxHeartRate);
 console.log(ages);
 console.log(fullAges);
 console.log(rates);	
+
+
+
+// Lecture: Functions returning functions
+
+function interviewQuestion(job) {
+	if (job === 'designer') {
+		return function(name) {
+			console.log(name + ', can you explain what UX design is?');
+		} 
+	} else if (job === 'teacher') {
+		return function(name) {
+			console.log('What subject do you teach ' + name + '?');
+		} 
+	} else {
+			return function(name) {
+				console.log('Hello ' + name + ', What do you do?')
+			}
+	}
+}
+
+
+
+
+var teacherQuestion = interviewQuestion('teacher');
+var designerQuestion = interviewQuestion('designer');
+
+teacherQuestion('John');
+designerQuestion('Jane');
+
+
+
+
+
+interviewQuestion('teacher')('Mark');	
+
+*/
+
+// Lecture: IIFE (Immediatley Invoked Function Expressions)
+
+function game() {
+	var score = Math.random() * 10;
+	console.log(score >= 5);
+}
+game();	
+
+(function() {
+	var score = Math.random() * 10;
+	console.log(score >= 5);
+})();
+
+//console.log(score);
+
+(function(goodLuck) {
+	var score = Math.random() * 10;
+	console.log(score >= 5 - goodLuck);
+})(5);
+ 
+
+
+
+
+
