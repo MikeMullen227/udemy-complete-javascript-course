@@ -329,19 +329,32 @@ console.log(fullJapan);
 */
 
 
-//// Coding Challenge 4
+//////// Coding Challenge 4
 
-
-var Question = function (question, answers, correctAnswer){
+/*
+(function() {
+	var Question = function (question, answers, correctAnswer){
 	this.question = question;
 	this.answers = answers;
 	this.correctAnswer = correctAnswer;
 }
 
-Question.prototype.displayQuestion() {
+Question.prototype.displayQuestion  = function(){
 	console.log(this.question);
+
+	for(var i = 0; i < this.answers.length; i++) {
+		console.log(i + ': ' + this.answers[i]);
+	}
+
 }
-	 
+
+Question.prototype.checkAnswer = function(ans) {
+	if(ans === this.correctAnswer) {
+		console.log('Congratulations, you got the correct answer!');
+	} else {
+		console.log('Sorry that is incorrect. Try again.')
+	}
+}	 
 
 var question1 = new Question('How far is the sun from the earth in miles?', [93000000, 65000000, 22000000], 0);
 var question2 = new Question('What is the capital of the United States?', ['Los Angeles', 'New York', 'Washington D.C.'], 2);
@@ -354,12 +367,89 @@ var randomQuestion = questions[Math.floor(Math.random()*questions.length)]
 //var randomQuestion = questions[Math.floor(Math.random()*questions.length)]
 //console.log(randomQuestion);
 
+randomQuestion.displayQuestion();
+
+var answer = parseInt(prompt('Please select the correct answer.'));
+
+randomQuestion.checkAnswer(answer);
+
+});
+*/
 
 
+//////// Expert Level
 
 
+(function() {
+	var Question = function (question, answers, correctAnswer){
+	this.question = question;
+	this.answers = answers;
+	this.correctAnswer = correctAnswer;
+}
 
 
+var question1 = new Question('How far is the sun from the earth in miles?', [93000000, 65000000, 22000000], 0);
+var question2 = new Question('What is the capital of the United States?', ['Los Angeles', 'New York', 'Washington D.C.'], 2);
+var question3 = new Question('What percentage of the human body is made up of water?', [55, 78, 90], 1);
+
+Question.prototype.displayQuestion  = function(){
+	console.log(this.question);
+
+	for(var i = 0; i < this.answers.length; i++) {
+		console.log(i + ': ' + this.answers[i]);
+	}
+
+}
+
+Question.prototype.checkAnswer = function(ans, callback) {
+	var sc;
+	if(ans === this.correctAnswer) {
+		console.log('Congratulations, you got the correct answer!');
+		sc = callback(true);
+	} else {
+		console.log('Sorry that is incorrect. Try again.')
+		sc = callback(false);
+	}
+	this.displayScore(sc);
+}	 
+
+Question.prototype.displayScore = function(score) {
+	console.log('Your current score is ' + score);
+	console.log('-------------------------------')
+}
+	
+	var questions = [question1, question2, question3];
+
+function score() {
+	var sc = 0;
+	return function(correct) {
+		if(correct) {
+		sc++;
+	}
+	return sc;
+	}
+}
+
+var keepScore = score();
+
+function nextQuestion() {
+	
+	var randomQuestion = questions[Math.floor(Math.random()*questions.length)]
+	randomQuestion.displayQuestion();
+
+	var answer = prompt('Please select the correct answer.');
+
+	if(answer !== 'exit') {
+		randomQuestion.checkAnswer(parseInt(answer), keepScore);
+		nextQuestion();
+	} 
+
+	
+}
+
+nextQuestion();
+
+})();
 
 
 
