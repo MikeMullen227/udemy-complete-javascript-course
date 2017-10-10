@@ -15,8 +15,6 @@ var scores, roundScore, activePlayer, dice, gamePlaying;
 init();
 
 
-
-
 //function btn() {
    //do something here
 //}
@@ -30,7 +28,7 @@ init();
 document.querySelector('.btn-roll').addEventListener('click', function(){
 	
 	if(gamePlaying) {
-		var dice = Math.floor(Math.random() * 6) + 1;
+		dice = Math.floor(Math.random() * 6) + 1;
 
 		// 2. Display the result.
 		var diceDOM = document.querySelector('.dice')
@@ -77,6 +75,9 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
 });
 
 
+
+document.querySelector('.btn-new').addEventListener('click', init) 
+
 function nextPlayer() {
 
 		// next player
@@ -101,8 +102,6 @@ function nextPlayer() {
 }
 
 
-document.querySelector('.btn-new').addEventListener('click', init) 
-
 function init() {
 
 	scores = [0,0];
@@ -121,7 +120,7 @@ function init() {
 	document.getElementById('name-1').textContent = "Player 2";
 	document.querySelector('.player-0-panel').classList.remove('winner');
 	document.querySelector('.player-1-panel').classList.remove('winner');
-	document.querySelector('.player-0-panel').classList.remove('active');
+	document.querySelector('.player-0-panel').classList.toggle('active');
 	document.querySelector('.player-1-panel').classList.remove('active');
 	document.querySelector('.player-0-panel').classList.add('active');
 
